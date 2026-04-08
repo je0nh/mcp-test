@@ -1,0 +1,32 @@
+1. Spark 운영 가이드
+[Spark Cluster Operation Guide]
+1. 메모리 설정:
+   - executor-memory는 가용한 RAM의 75%를 넘지 않도록 설정하십시오.
+   - 부족할 경우 데이터 유실(Spilling)이 발생할 수 있습니다.
+2. 파티션 최적화:
+   - 데이터 크기에 따라 적정 파티션 수를 유지하십시오.
+   - 기본적으로 코어 수의 2~3배를 권장합니다.
+3. 체크포인트:
+   - 장기 실행 스트리밍 쿼리의 경우 HDFS 경로에 checkpoint를 설정하십시오.
+
+
+2. 프로젝트 테이블 스키마 정보 (schema_info.txt)
+[Database Schema: Traffic_Data]
+1. 테이블명: user_activity
+   - user_id (String): 사용자 고유 식별자
+   - action_type (String): 클릭, 구매, 로그아웃 등
+   - timestamp (Long): 이벤트 발생 시각 (Unix epoch)
+
+2. 테이블명: user_master
+   - no (Integer): 번호
+   - name (String): 이름
+
+
+3. 회사 내부 규정 (company_policy.txt)
+[Internal Security Policy]
+1. 데이터 접근 권한:
+   - 모든 데이터 쿼리 로그는 실시간으로 기록됩니다.
+   - 개인정보(PII)가 포함된 컬럼은 암호화 조회가 원칙입니다.
+2. 장애 보고:
+   - Spark 클러스터 다운 시 즉시 Slack #ops-alerts 채널에 보고하십시오.
+   - 보고 시 에러 스택트레이스를 반드시 첨부해야 합니다.
