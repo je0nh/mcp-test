@@ -1,6 +1,4 @@
-def main():
-    print("Hello from mcp-test!")
-
+from mcp_resource import mcp
 
 if __name__ == "__main__":
-    main()
+    mcp.run(transport="stdio", show_banner=False)
